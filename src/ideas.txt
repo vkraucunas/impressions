@@ -1,0 +1,7 @@
+Restaurant types:
+    x   Pho - Phomiliar
+    x   Tacos - Mucha Muchacha's
+    x   Steakhouse - Green Lantern
+    x   Pub food - Dundee's
+    x   Vegetarian - Sapphire's Greens
+    x   Seafood - Low Country
