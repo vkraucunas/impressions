@@ -9,7 +9,7 @@ var swig = require('swig');
 
 //data dependencies
 var restaurants = require('./data').restaurants;
-console.log(restaurants);
+
 // *** routes *** //
  var routes = require('./routes/index.js');
 
@@ -70,7 +70,17 @@ app.get('/show/:restaurantId', function(req, res, next) {
 
 });
 
+// app.get('/new', function(req, res, next) {
+//   //console.log(req);
+//   var id = req.param;
+//   console.log("the req param", id);
+//   res.render('show', {
+//     title: "Impressions : Show",
+//     header: "New Restaurant",
+//     restaurant: restaurant
+//   });
 
+// });
 
 
 

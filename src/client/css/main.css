@@ -16,6 +16,10 @@ body {
     display: inline;
 }
 
+.control=label {
+    display: block;
+}
+
 a {
   color: #00B7FF;
 }
