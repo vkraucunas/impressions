@@ -30,7 +30,7 @@ var rest1 = new Restaurant({
 });
 var rest2 = new Restaurant({
     name: "Mucha Muchacha's",
-    img: 'http://localhost:3000/images/mexican.jpg',
+    img: '../images/mexican.jpg',
     foodType: "Mexican",
     city: "Phoenix",
     state: "AZ",
@@ -45,7 +45,7 @@ var rest2 = new Restaurant({
 });
 var rest3 = new Restaurant({
     name: "Green Lantern",
-    img: 'http://localhost:3000/images/steak.jpg',
+    img: '../images/steak.jpg',
     foodType: "American",
     city: "Decatur",
     state: "NE",
@@ -60,7 +60,7 @@ var rest3 = new Restaurant({
 });
 var rest4 = new Restaurant({
     name: "Dundee's",
-    img: 'http://localhost:3000/images/pub.jpg',
+    img: '../images/pub.jpg',
     foodType: "Pub",
     city: "Charlotte",
     state: "SC",
@@ -75,7 +75,7 @@ var rest4 = new Restaurant({
 });
 var rest5 = new Restaurant({
     name: "Green House",
-    img: 'http://localhost:3000/images/salad.jpg',
+    img: '../images/salad.jpg',
     foodType: "Vegetarian",
     city: "Portland",
     state: "OR",
@@ -90,7 +90,7 @@ var rest5 = new Restaurant({
 });
 var rest6 = new Restaurant({
     name: "Low Country",
-    img: 'http://localhost:3000/images/boil.jpg',
+    img: '../images/boil.jpg',
     foodType: "Cajun",
     city: "New Orleans",
     state: "LA",
