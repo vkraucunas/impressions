@@ -7,7 +7,8 @@ var Restaurant = function(inputObj) {
     this.foodType = inputObj.foodType;
     this.city = inputObj.city;
     this.state = inputObj.state;
-    this.rating = inputObj.rating
+    this.rating = inputObj.rating;
+    this.descript = inputObj.descript;
 }
 
 
@@ -23,7 +24,9 @@ var rest1 = new Restaurant({
                 {type:"fullStar"},
                 {type:"fullStar"},
                 {type:"fullStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin.",
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 var rest2 = new Restaurant({
     name: "Mucha Muchacha's",
@@ -37,7 +40,8 @@ var rest2 = new Restaurant({
                 {type:"fullStar"},
                 {type:"fullStar"},
                 {type:"emptyStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 var rest3 = new Restaurant({
     name: "Green Lantern",
@@ -51,7 +55,8 @@ var rest3 = new Restaurant({
                 {type:"emptyStar"},
                 {type:"emptyStar"},
                 {type:"emptyStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 var rest4 = new Restaurant({
     name: "Dundee's",
@@ -65,7 +70,8 @@ var rest4 = new Restaurant({
                 {type:"emptyStar"},
                 {type:"emptyStar"},
                 {type:"emptyStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 var rest5 = new Restaurant({
     name: "Green House",
@@ -79,7 +85,8 @@ var rest5 = new Restaurant({
                 {type:"fullStar"},
                 {type:"fullStar"},
                 {type:"emptyStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 var rest6 = new Restaurant({
     name: "Low Country",
@@ -93,7 +100,8 @@ var rest6 = new Restaurant({
                 {type:"emptyStar"},
                 {type:"emptyStar"},
                 {type:"emptyStar"}
-            ]
+            ],
+    descript: "Bacon ipsum dolor amet pork loin ham hock short ribs shank cupim turducken tongue, prosciutto ball tip jowl pig capicola. Shoulder corned beef frankfurter, ham t-bone ribeye pork loin hamburger spare ribs brisket beef tail rump bresaola. Shankle jerky hamburger bresaola t-bone alcatra tri-tip turkey shoulder beef bacon tongue pork ham sirloin."
 });
 
 var restaurants = [ rest1, rest2, rest3, rest4, rest5, rest6 ];

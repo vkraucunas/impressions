@@ -1,4 +1,4 @@
-% extends 'layout.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}{% endblock %}
 
@@ -6,12 +6,31 @@
 {% block content %}
 
     <div class="container">
-
-    {% for restaurant in array %}
-
-
-    {%endfor%}
-
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{restaurant.img}}" alt="restaurant display img"/>
+            </div>
+            <div class="col-lg-6">
+                <h4>{{restaurant.foodType}} Cuisine</h4>
+                <h4><em>Located in {{restaurant.city}}, {{restaurant.state}}</em></h4>
+                <br><br>
+                <p>{{restaurant.descript}}</p>
+                <p class="inline">Rating: </p>
+                <div class="inline rating">
+                    {% for star in restaurant.rating %}
+                        {% if star.type == "fullStar" %}
+                            <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+                        {% if star.type == "emptyStar" %}
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        {% endif %}
+                    {%endfor%}
+                </div>
+                <br><br>
+                <button class="btn btn-md btn-success">Edit</button>
+                <button class="btn btn-md btn-warning">Delete</button>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
