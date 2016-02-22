@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/',express.static(path.join(__dirname, '../client')));
+// app.use('/show/', express.static(path.join(__dirname, '../client/pages')));
 app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
@@ -47,14 +48,34 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/show/:restaurantId', function(req, res, next) {
-  //restaurant id cannot be empty
-  //select restaurant from restaurants array
-  //pass in just the restaurant that i selected to the .render
-  res.render('index', {
-    title: "Impressions",
-    restaurantId: restaurants
+  //console.log(req);
+  var id = req.params.restaurantId;
+  if(!id) {
+    next();
+    return;
+  }
+
+  var restaurant;
+  for ( var r in restaurants) {
+    if (restaurants[r].id === Number(id)){
+      restaurant = restaurants[r];
+    }
+  }
+
+  res.render('show', {
+    title: "Impressions : Show",
+    header: restaurant.name,
+    restaurant: restaurant
   });
+
 });
+
+
+
+
+
+
+
 
 
 // catch 404 and forward to error handler
