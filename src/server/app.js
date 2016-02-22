@@ -46,6 +46,16 @@ app.get('/', function(req, res, next) {
   });
 });
 
+app.get('/show/:restaurantId', function(req, res, next) {
+  //restaurant id cannot be empty
+  //select restaurant from restaurants array
+  //pass in just the restaurant that i selected to the .render
+  res.render('index', {
+    title: "Impressions",
+    restaurantId: restaurants
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
