@@ -81,7 +81,6 @@ $(document).on('ready', function() {
                   'Barbeque',
                   'Sports Bars',
                   'Japanese',
-                  'Vietnamese',
                   'Seafood',
                   'Steakhouses',
                   'Thai',

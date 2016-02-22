@@ -5,10 +5,10 @@
 
 {% block content %}
 
-    <div class="container">
+    <div class="container breathingRoom">
 
     {% for restaurant in array %}
-        <div class="col-lg-4">
+        <div class="col-lg-4 restaurantChunk">
             <div>
                 <a href="/show/{{restaurant.id}}"><h3>{{ restaurant.name }}</h3>
                 <img class="homeImg" src="{{ restaurant.img }}" alt="restaurant img"></a>
