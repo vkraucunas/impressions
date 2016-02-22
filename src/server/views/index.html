@@ -5,11 +5,30 @@
 
 {% block content %}
 
-  <div class="container">
+    <div class="container">
 
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    {% for restaurant in array %}
+        <div class="col-lg-4">
+            <div>
+                <a href="#{{restaurant.id}}"><h3>{{ restaurant.name }}</h3>
+                <img class="homeImg" src="{{ restaurant.img }}" alt="restaurant img"></a>
+                <p>{{ restaurant.foodType }} Cuisine</p>
+                <p class="inline">{{ restaurant.city }}, {{ restaurant.state }}</p>
+                <div class="inline rating">
+                    {% for star in restaurant.rating %}
+                        {% if star.type == "fullStar" %}
+                            <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+                        {% if star.type == "emptyStar" %}
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        {% endif %}
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
 
-  </div>
+    {%endfor%}
+
+    </div>
 
 {% endblock %}

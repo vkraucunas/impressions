@@ -7,7 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 
-
+//data dependencies
+var restaurants = require('./data').restaurants;
+console.log(restaurants);
 // *** routes *** //
  var routes = require('./routes/index.js');
 
@@ -36,7 +38,13 @@ app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
 // *** main routes *** //
-app.use('/', routes);
+// app.use('/', routes);
+app.get('/', function(req, res, next) {
+  res.render('index', {
+    title: "Impressions",
+    array: restaurants
+  });
+});
 
 
 // catch 404 and forward to error handler

@@ -1,10 +1,7 @@
-module.exports = {
-    Restaurant: Restaurant,
-    restaurants: restaurants
-};
-
-
+var idCounter = 0;
 var Restaurant = function(inputObj) {
+    idCounter += 1;
+    this.id = idCounter;
     this.name = inputObj.name;
     this.img = inputObj.img;
     this.foodType = inputObj.foodType;
@@ -16,51 +13,92 @@ var Restaurant = function(inputObj) {
 
 var rest1 = new Restaurant({
     name: "Phomiliar",
-    img: 'http://localhost:3000/images/logo.png',
+    img: 'http://localhost:3000/images/pho1.jpg',
     foodType: "Vietnamese",
     city: "Austin",
     state: "TX",
-    rating: 5
+    rating: [
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"}
+            ]
 });
 var rest2 = new Restaurant({
     name: "Mucha Muchacha's",
-    img: '',
+    img: 'http://localhost:3000/images/mexican.jpg',
     foodType: "Mexican",
-    city: "Omaha",
-    state: "NE",
-    rating: 4
+    city: "Phoenix",
+    state: "AZ",
+    rating: [
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"emptyStar"}
+            ]
 });
 var rest3 = new Restaurant({
     name: "Green Lantern",
-    img: '',
-    foodType: "Steakhouse",
+    img: 'http://localhost:3000/images/steak.jpg',
+    foodType: "American",
     city: "Decatur",
     state: "NE",
-    rating: 1
+    rating: [
+                {type:"fullStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"}
+            ]
 });
 var rest4 = new Restaurant({
     name: "Dundee's",
-    img: '',
+    img: 'http://localhost:3000/images/pub.jpg',
     foodType: "Pub",
     city: "Charlotte",
     state: "SC",
-    rating: 2
+    rating: [
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"}
+            ]
 });
 var rest5 = new Restaurant({
     name: "Green House",
-    img: '',
+    img: 'http://localhost:3000/images/salad.jpg',
     foodType: "Vegetarian",
     city: "Portland",
     state: "OR",
-    rating: 4
+    rating: [
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"emptyStar"}
+            ]
 });
 var rest6 = new Restaurant({
     name: "Low Country",
-    img: '',
+    img: 'http://localhost:3000/images/boil.jpg',
     foodType: "Cajun",
     city: "New Orleans",
     state: "LA",
-    rating: 3
+    rating: [
+                {type:"fullStar"},
+                {type:"fullStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"},
+                {type:"emptyStar"}
+            ]
 });
 
 var restaurants = [ rest1, rest2, rest3, rest4, rest5, rest6 ];
+
+module.exports = {
+    Restaurant: Restaurant,
+    restaurants: restaurants
+};

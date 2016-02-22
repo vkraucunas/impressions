@@ -7,6 +7,15 @@ body {
     border-top-right-radius: 0;
 }
 
+.homeImg {
+    height: 200px;
+    width: 200px;
+}
+
+.inline {
+    display: inline;
+}
+
 a {
   color: #00B7FF;
 }
