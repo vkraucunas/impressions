@@ -9,7 +9,7 @@ var swig = require('swig');
 
 
 // *** routes *** //
-var routes = require('./routes/index.js');
+ var routes = require('./routes/index.js');
 
 
 // *** express instance *** //
@@ -31,7 +31,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../client')));
+app.use('/',express.static(path.join(__dirname, '../client')));
+app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
 // *** main routes *** //
@@ -70,5 +71,9 @@ app.use(function(err, req, res, next) {
   });
 });
 
+
+app.listen(3000, function () {
+    console.log('App listening on port ' + 3000);
+});
 
 module.exports = app;

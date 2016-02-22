@@ -1,6 +1,10 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 a {
