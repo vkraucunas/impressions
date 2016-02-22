@@ -14,7 +14,7 @@ var Restaurant = function(inputObj) {
 
 var rest1 = new Restaurant({
     name: "Phomiliar",
-    img: 'http://localhost:3000/images/pho1.jpg',
+    img: '../images/pho1.jpg',
     foodType: "Vietnamese",
     city: "Austin",
     state: "TX",
