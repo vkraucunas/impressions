@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Edit Restaurant</legend>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="name" placeholder="Restaurant Name" value="{{restaurant.name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Location</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="city" placeholder="City" value="{{restaurant.city}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">State</label>
+                        <div class="col-lg-2">
+                            <select class="form-control statesDropDown" id="select">
+                                <option>{{restaurant.state}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Cuisine</label>
+                        <div class="col-lg-2">
+                            <select class="form-control foodTypeDropDown" id="select">
+                                <option>{{restaurant.foodType}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Everything above here good -->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Rating</label>
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label id="5star">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label id="4star">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label id="3star">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label id="2star">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Image</label>
+                        <div class="col-lg-10">
+                            <input type="text" disabled="" class="form-control" id="imageSource" placeholder="Image source url">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Brief Description</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="textArea" maxlength="500">{{restaurant.descript}}</textarea>
+                            <span class="help-block">500 character max.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -70,17 +70,27 @@ app.get('/show/:restaurantId', function(req, res, next) {
 
 });
 
-// app.get('/new', function(req, res, next) {
-//   //console.log(req);
-//   var id = req.param;
-//   console.log("the req param", id);
-//   res.render('show', {
-//     title: "Impressions : Show",
-//     header: "New Restaurant",
-//     restaurant: restaurant
-//   });
+app.get('/edit/:restaurantId', function(req, res, next) {
+  var id = req.params.restaurantId;
+  if(!id) {
+    next();
+    return;
+  }
 
-// });
+  var restaurant;
+  for ( var r in restaurants) {
+    if (restaurants[r].id === Number(id)){
+      restaurant = restaurants[r];
+    }
+  }
+
+  res.render('edit', {
+    title: "Impressions : Edit",
+    header: "Edit "+restaurant.name,
+    restaurant: restaurant
+  });
+
+});
 
 
 
