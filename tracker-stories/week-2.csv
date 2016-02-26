@@ -9,9 +9,9 @@ __Acceptance Criteria:__
 114447991,"As a User, when I click the delete button on the restaurant show page, that restaurant is deleted","crud & database manipulation, routing",,,,feature,,unscheduled,"Feb 24, 2016",,,Wes Reid,"When a user clicks the delete button on the restaurant show page, that restaurant should be deleted from the restaurants database and the user should be redirected to the home page.
 
 __Acceptance Criteria:__
-* When the user clicks on the Delete button, a DELETE is sent to `/restaurants/:id`
+* When the user clicks on the Delete button, a POST is sent to `/restaurants/:id/delete`
 * The user is then redirected to the home page
-* The restaurant should be deleted from the database",https://www.pivotaltracker.com/story/show/114447991,,"When the user clicks on the Delete button, a DELETE is sent to /restaurants/:id",not completed,The user is then redirected to the home page,not completed,The restaurant should be deleted from the database,not completed
+* The restaurant should be deleted from the database",https://www.pivotaltracker.com/story/show/114447991,,"When the user clicks on the Delete button, a DELETE is sent to /restaurants/:id/delete",not completed,The user is then redirected to the home page,not completed,The restaurant should be deleted from the database,not completed
 114447603,"As a User, when I click submit on the new restaurant form a new restaurant is created","crud & database manipulation, routing",,,,feature,,unscheduled,"Feb 24, 2016",,,Wes Reid,"When a user clicks submit on the new restaurant page, a new restaurant should be created. The user is then redirected to the show page for that restaurant.
 
 __Acceptance Criteria:__
@@ -22,9 +22,9 @@ __Acceptance Criteria:__
 
 __Acceptance Criteria:__
 * On the restaurant's edit page, information about the restaurant should be pulled from the database and be populated into the present fields
-* When a user hits submit, a PUT/PATCH should be sent to `/restaurants/:id`
+* When a user hits submit, a POST should be sent to `/restaurants/:id/edit`
 * Any changed information should be updated in the database
-* The user should then be redirected to that restaurants show page",https://www.pivotaltracker.com/story/show/114447605,,"On the restaurant's edit page, information about the restaurant should be pulled from the database and be populated into the present fields",not completed,"When a user hits submit, a PUT/PATCH should be sent to /restaurants/:id",not completed,Any changed information should be updated in the database,not completed,The user should then be redirected to that restaurants show page,not completed
+* The user should then be redirected to that restaurants show page",https://www.pivotaltracker.com/story/show/114447605,,"On the restaurant's edit page, information about the restaurant should be pulled from the database and be populated into the present fields",not completed,"When a user hits submit, a POST should be sent to /restaurants/:id/edit",not completed,Any changed information should be updated in the database,not completed,The user should then be redirected to that restaurants show page,not completed
 114453661,"As a User, when I go to /restaurants/:id/reviews I should get the new review page",routing,,,,feature,,unscheduled,"Feb 24, 2016",,,Wes Reid,"When a user goes to:
 
 > /restaurants/:id/reviews/new
@@ -102,9 +102,9 @@ The following should be validated:
 114454267,"As a User, I want to be able to edit a new review from the edit review page","crud & database manipulation, routing",,,,feature,,unscheduled,"Feb 24, 2016",,,Wes Reid,"When the user hits submit on the edit review page, the review is updated and they are taken back to the reviewed restaurants page.
 
 __Acceptance Criteria:__
-* When the submit button is pressed, a PUT/PATCH is sent to `/restaurants/:id/reviews/:review-id`
+* When the submit button is pressed, a POST is sent to `/restaurants/:id/reviews/:review-id/edit`
 * When the submit button is pressed, that specific review is updated
-* After successfully submitting, the user is redirected to the restaurant's show page",https://www.pivotaltracker.com/story/show/114454267,,"When the submit button is pressed, a PUT/PATCH to /restaurants/:id/reviews/:review-id is sent by the form",not completed,"When the submit button is pressed, that review is updated with the changed information",not completed,"After successfully submitting, the user is redirected to the restaurant's page",not completed
+* After successfully submitting, the user is redirected to the restaurant's show page",https://www.pivotaltracker.com/story/show/114454267,,"When the submit button is pressed, a POST is sent to `/restaurants/:id/reviews/:review-id/edit`",not completed,"When the submit button is pressed, that review is updated with the changed information",not completed,"After successfully submitting, the user is redirected to the restaurant's page",not completed
 114452853,"As a User, I want the restaurant's rating to be dependent on the reviews given by users of the site",crud & database manipulation,,,,feature,,unscheduled,"Feb 24, 2016",,,Wes Reid,"Instead of hardcoding a rating, we want to generate ratings based on the reviews. This will require you to update information being displayed on the home page and the restaurant show page.
 
 __Acceptance Criteria:__
