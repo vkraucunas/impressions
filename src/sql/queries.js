@@ -1,0 +1,1 @@
+// var queryGetAll = client.query('SELECT * from restaurants');

@@ -25,6 +25,10 @@ body {
     display: inline;
 }
 
+.rating {
+    margin-left: 20px;
+}
+
 .control=label {
     display: block;
 }

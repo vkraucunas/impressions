@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 
-//data dependencies
-var restaurants = require('./data').restaurants;
 
 // *** routes *** //
  var routes = require('./routes/index.js');
@@ -39,63 +37,7 @@ app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
 // *** main routes *** //
-// app.use('/', routes);
-app.get('/', function(req, res, next) {
-  res.render('index', {
-    title: "Impressions",
-    array: restaurants
-  });
-});
-
-app.get('/show/:restaurantId', function(req, res, next) {
-  //console.log(req);
-  var id = req.params.restaurantId;
-  if(!id) {
-    next();
-    return;
-  }
-
-  var restaurant;
-  for ( var r in restaurants) {
-    if (restaurants[r].id === Number(id)){
-      restaurant = restaurants[r];
-    }
-  }
-
-  res.render('show', {
-    title: "Impressions : Show",
-    header: restaurant.name,
-    restaurant: restaurant
-  });
-
-});
-
-app.get('/edit/:restaurantId', function(req, res, next) {
-  var id = req.params.restaurantId;
-  if(!id) {
-    next();
-    return;
-  }
-
-  var restaurant;
-  for ( var r in restaurants) {
-    if (restaurants[r].id === Number(id)){
-      restaurant = restaurants[r];
-    }
-  }
-
-  res.render('edit', {
-    title: "Impressions : Edit",
-    header: "Edit "+restaurant.name,
-    restaurant: restaurant
-  });
-
-});
-
-
-
-
-
+app.use('/', routes);
 
 
 // catch 404 and forward to error handler

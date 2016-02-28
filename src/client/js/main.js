@@ -3,6 +3,17 @@
 $(document).on('ready', function() {
   console.log('sanity check!');
 
+    $('.rating').each(function (value) {
+        var rating = $(this).attr('data-rating-value');
+        for(var i = 0; i < 5; i++) {
+            if (i < rating) {
+                $(this).append('<span class="glyphicon glyphicon-star"></span>');
+            } else {
+                $(this).append('<span class="glyphicon glyphicon-star-empty"></span>');
+            }
+        }
+    });
+
     var states = [ 'AL: Alabama',
                    'AK: Alaska',
                    'AZ: Arizona',
