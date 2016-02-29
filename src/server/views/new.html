@@ -1,4 +1,4 @@
-% extends 'layout.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}{% endblock %}
 
@@ -6,31 +6,64 @@
 {% block content %}
 
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="{{restaurant.img}}" alt="restaurant display img"/>
-            </div>
-            <div class="col-lg-6">
-                <h4>{{restaurant.foodType}} Cuisine</h4>
-                <h4><em>Located in {{restaurant.city}}, {{restaurant.state}}</em></h4>
-                <br><br>
-                <p>{{restaurant.descript}}</p>
-                <p class="inline">Rating: </p>
-                <div class="inline rating">
-                    {% for star in restaurant.rating %}
-                        {% if star.type == "fullStar" %}
-                            <span class="glyphicon glyphicon-star"></span>
-                        {% endif %}
-                        {% if star.type == "emptyStar" %}
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        {% endif %}
-                    {%endfor%}
-                </div>
-                <br><br>
-                <button type="submit" id="createNewRestaurant" class="btn btn-md btn-success inline">Create</button>
-                <button class="btn btn-md btn-danger inline"><a href="../../">Cancel</a></button>
+        <form class="form-horizontal" method="POST">
+            <fieldset>
+                <legend>Add Restaurant</legend>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="name" maxlength="40" placeholder="Restaurant Name" value="{{restaurant.name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Location</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="city" placeholder="City" value="{{restaurant.city}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">State</label>
+                        <div class="col-lg-2">
+                            <select class="form-control statesDropDown" id="select">
+                                <option>{{restaurant.state}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Cuisine</label>
+                        <div class="col-lg-2">
+                            <select class="form-control foodTypeDropDown" id="select">
+                                <option>{{restaurant.food_type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Image</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="imageSource" placeholder="Image source url">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Brief Description</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="3" id="textArea" maxlength="500">{{restaurant.description}}</textarea>
+                            <span class="help-block">500 character max.</span>
+                        </div>
+                    </div>
+                    <div class="form-group inline">
+                        <div class="col-lg-4 col-lg-offset-2 inline">
+                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                        </div>
+                    </div>
+
+            </fieldset>
+        </form>
+        <div class="form-group inline">
+            <div class="col-lg-4 col-lg-offset-2 inline">
+                <a href="../"><button class="btn btn-danger delete">Cancel</button></a>
             </div>
         </div>
     </div>
+
 
 {% endblock %}

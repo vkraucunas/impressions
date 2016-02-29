@@ -32,6 +32,15 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/new', function(req, res, next) {
+    var restaurants = [];
+    res.render('new', {
+        title: 'Add New Restaurant',
+        header: 'Add New Restaurant',
+    })
+
+});
+
 router.get('/restaurants/:restaurantId/edit', function(req, res, next) {
   var uriId = req.params.restaurantId;
   console.log('get');
@@ -126,6 +135,26 @@ router.get('/restaurants/:restaurantId', function(req, res, next) {
     });
 });
 
+router.post('/restaurants/:restaurantId', function(req, res, next) {
+  var uriId = req.params.restaurantId;
+  if(!uriId) {
+    next();
+    return;
+  }
+    pg.connect(connectionString, function(err, client, done) {
+        if(err) {
+            done();
+            return res.status(500).json({status: 'error', message: 'Something bad happened'});
+        }
+        var qry = 'DELETE FROM restaurants WHERE id =' + uriId;
+        var query = client.query(qry);
+        query.on('end', function(row) {
+            res.redirect('/');
+            done();
+        });
+    pg.end();
+    });
+});
 
 router.post('/restaurants/:restaurantId/edit', function(req, res, next) {
     console.log(req.body);
