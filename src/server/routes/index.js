@@ -32,50 +32,131 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/restaurants/:restaurantId/edit', function(req, res, next) {
+  var uriId = req.params.restaurantId;
+  console.log('get');
+  if(!uriId) {
+    next();
+    return;
+  }
+  pg.connect(connectionString, function(err, client, done) {
+    if(err) {
+        done();
+        return res.status(500).json({status: 'error', message: 'Something bad happened'});
+    }
+        var qry = 'SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r WHERE r.id =' + uriId;
+        var query = client.query(qry);
+        console.log("Query string is", qry);
+        query.on('row', function(row) {
+            var restaurant = row;
+            restaurant.ratings = [];
 
-// router.get('/restaurants/:restaurantId', function(req, res, next) {
-//   var id = req.params.restaurantId;
-//   if(!id) {
-//     next();
-//     return;
-//   }
+            var ratingsQry = 'SELECT * FROM ratings WHERE restaurant_id='+uriId;
+            var query2 = client.query(ratingsQry);
 
-//   var restaurant;
-//   for ( var r in restaurants) {
-//     if (restaurants[r].id === Number(id)){
-//       restaurant = restaurants[r];
-//     }
-//   }
+            query2.on('row', function(row) {
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                row.review_date = new Intl.DateTimeFormat('en-US', options).format(row.review_date);
+                row.short_review = row.review.substring(0, 35);
+                console.log(row.review_date);
 
-//   res.render('show', {
-//     title: restaurant.name,
-//     header: restaurant.name,
-//     restaurant: restaurant
-//   });
+                restaurant.ratings.push(row);
+            });
+            query2.on('end', function() {
+                var ratingsObj = restaurant.ratings;
+                console.log(ratingsObj.review_date);
 
-// });
+                res.render('edit', {
+                    title: restaurant.name,
+                    header: restaurant.name,
+                    ratings: restaurant.ratings,
+                    restaurant: restaurant
+                });
+                done();
+            });
+        });
+    pg.end();
+  });
+});
 
-// router.get('/edit/:restaurantId', function(req, res, next) {
-//   var id = req.params.restaurantId;
-//   if(!id) {
-//     next();
-//     return;
-//   }
 
-//   var restaurant;
-//   for ( var r in restaurants) {
-//     if (restaurants[r].id === Number(id)){
-//       restaurant = restaurants[r];
-//     }
-//   }
+router.get('/restaurants/:restaurantId', function(req, res, next) {
+  var uriId = req.params.restaurantId;
+  if(!uriId) {
+    next();
+    return;
+  }
+    pg.connect(connectionString, function(err, client, done) {
+        if(err) {
+            done();
+            return res.status(500).json({status: 'error', message: 'Something bad happened'});
+        }
+        var qry = 'SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r WHERE r.id =' + uriId;
+        var query = client.query(qry);
+        console.log("Query string is", qry);
+        query.on('row', function(row) {
+            var restaurant = row;
+            restaurant.ratings = [];
 
-//   res.render('edit', {
-//     title: "Impressions : Edit",
-//     header: "Edit "+restaurant.name,
-//     restaurant: restaurant
-//   });
+            var ratingsQry = 'SELECT * FROM ratings WHERE restaurant_id='+uriId;
+            var query2 = client.query(ratingsQry);
 
-// });
+            query2.on('row', function(row) {
+                var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                row.review_date = new Intl.DateTimeFormat('en-US', options).format(row.review_date);
+                row.short_review = row.review.substring(0, 35);
+                console.log(row.review_date);
+
+                restaurant.ratings.push(row);
+            });
+            query2.on('end', function() {
+                var ratingsObj = restaurant.ratings;
+                console.log(ratingsObj.review_date);
+
+                res.render('show', {
+                    title: restaurant.name,
+                    header: restaurant.name,
+                    ratings: restaurant.ratings,
+                    restaurant: restaurant
+                });
+                done();
+            });
+        });
+    pg.end();
+    });
+});
+
+
+router.post('/restaurants/:restaurantId/edit', function(req, res, next) {
+    console.log(req.body);
+    var input = req.body;
+    pg.connect(connectionString, function(err, client, done) {
+
+      if(err) {
+
+        res.status(500).json({status: 'error', message: 'Something bad happened'});
+                done();
+      }
+      var qury="UPDATE restaurants SET (name, city, state, food_type, description) = ('"+[input.name.text(),input.city,input.state,input.food_type,input.description].join("','")+"') WHERE id =" +req.params.restaurantId +";";
+      console.log(qury);
+      var query = client.query(qury);
+      query.on('end', function() {
+        res.redirect('/restaurants/'+req.params.restaurantId);
+        done();
+      })
+      // query.on('end', function(){
+      //   res.render('show', {
+      //       title: restaurant.name,
+      //       header: restaurant.name,
+      //       ratings: restaurant.ratings,
+      //       restaurant: restaurant
+      //   });
+      //   done();
+      // });
+      // close the connection
+      pg.end();
+    });
+});
 
 
 module.exports = router;

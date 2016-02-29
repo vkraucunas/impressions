@@ -10,11 +10,11 @@
     {% for restaurant in array %}
         <div class="col-lg-4 restaurantChunk">
             <div>
-                <a href="/show/{{restaurant.id}}"><h3>{{ restaurant.name }}</h3>
+                <a href="/restaurants/{{restaurant.id}}"><h3>{{ restaurant.name }}</h3>
                 <img class="homeImg" src="{{ restaurant.img }}" alt="restaurant img"></a>
                 <p>{{ restaurant.food_type }} Cuisine</p>
                 <p class="inline">{{ restaurant.city }}, {{ restaurant.state }}</p>
-                <div class="inline rating" data-rating-value="{{ restaurant.rating }}">
+                <div class="inline ratingStars" data-rating-value="{{ restaurant.rating }}">
 
                 </div>
             </div>

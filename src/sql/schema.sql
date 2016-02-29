@@ -18,6 +18,7 @@ CREATE TABLE ratings (
     restaurant_id integer references restaurants(id),
     user_name varchar(20) UNIQUE,
     rating integer DEFAULT 1,
-    review text
+    review text,
+    review_date date
 );
 

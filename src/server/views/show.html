@@ -11,24 +11,63 @@
                 <img src="{{restaurant.img}}" alt="restaurant display img"/>
             </div>
             <div class="col-lg-6">
-                <h4>{{restaurant.foodType}} Cuisine</h4>
+                <h4>{{restaurant.food_type}} Cuisine</h4>
                 <h4><em>Located in {{restaurant.city}}, {{restaurant.state}}</em></h4>
                 <br><br>
                 <p>{{restaurant.descript}}</p>
                 <p class="inline">Rating: </p>
-                <div class="inline rating">
-                    {% for star in restaurant.rating %}
-                        {% if star.type == "fullStar" %}
-                            <span class="glyphicon glyphicon-star"></span>
-                        {% endif %}
-                        {% if star.type == "emptyStar" %}
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        {% endif %}
-                    {%endfor%}
+                <div class="inline ratingStars" data-rating-value='{{restaurant.rating}}'>
                 </div>
                 <br><br>
-                <a href="../edit/{{restaurant.id}}"><button class="btn btn-md btn-success">Edit</button></a>
-                <button class="btn btn-md btn-warning">Delete</button>
+                <a href="./{{restaurant.id}}/edit"><button class="btn btn-md btn-success">Edit</button></a>
+                <a href="#"><button class="btn btn-md btn-danger">Delete</button></a>
+                <a href="#"><button class="btn btn-md btn-info">Add Review</button></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 employees">
+                <a href="#"><button class="btn btn-md btn-primary">Add Employee</button></a>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="success">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Harry</td>
+                            <td>Potter</td>
+                            <td>Manager</td>
+                        </tr>
+                        <tr>
+                            <td>Luna</td>
+                            <td>Lovegood</td>
+                            <td>Head Chef</td>
+                        </tr>
+                        <tr>
+                            <td>Rubeus</td>
+                            <td>Hagrid</td>
+                            <td>Host</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">
+                {% for rating in ratings %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{rating.user_name}}&#32;&#32;-&#32;&#32;{{rating.review_date}}
+                        </div>
+                        <div class="panel-body">
+                            <p class="reviewText longText" style="display: none;">"{{rating.review}}"</p>
+                            <p class="reviewText shortText">"{{rating.short_review}}<a class="showMoreTextLink">...</a>"</p>
+                            <div class="inline ratingStars" data-rating-value={{rating.rating}}></div>
+                            <a href="#">Edit</a>
+                        </div>
+                    </div>
+                {%endfor%}
             </div>
         </div>
     </div>

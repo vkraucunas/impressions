@@ -2,6 +2,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.row {
+    margin-bottom: 26px;
+}
+
 .navbar {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
