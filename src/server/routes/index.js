@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 
-var connectionString = 'postgres://localhost:5432/restaurant_crud';
+
+var connectionString = process.env.DATABASE_URL || "postgres://localhost:5432/restaurant_crud";
 
 var queries = require('../../sql/queries.js');
 
