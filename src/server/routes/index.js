@@ -57,6 +57,20 @@ router.get('/restaurants/:id', function(req, res, next) {
     });
 });
 
+router.get('/restaurants/:id/edit', function(req, res, next) {
+    var url_id = req.params.id;
+    db.one('SELECT * FROM restaurants WHERE id = ' + url_id)
+    .then(function (restaurant) {
+        res.render('edit', {
+            title: 'Edit '+restaurant.name,
+            header: restaurant.name,
+            restaurant: restaurant
+        })
+    })
+    .catch(function (err) {
+        return next(err);
+    });
+})
 
 
 
@@ -72,6 +86,24 @@ router.get('/restaurants/:id', function(req, res, next) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//+++++++++++++++++++ POST +++++++++++++++++++
 router.post('/restaurants/:restaurantId', function(req, res, next) {
   var uriId = req.params.restaurantId;
   if(!uriId) {
