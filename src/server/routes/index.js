@@ -1,37 +1,56 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
 
 
-var connectionString = process.env.DATABASE_URL || "postgres://localhost:5432/restaurant_crud";
+var options = {};
+var pgp = require('pg-promise')(options);
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/restaurant_crud';
+var db = pgp(connectionString);
 
-var queries = require('../../sql/queries.js');
 
 router.get('/', function(req, res, next) {
-    var restaurants = [];
-    pg.connect(connectionString, function(err, client, done) {
-        if(err) {
-            done();
-            return res.status(500).json({status: 'error', message: 'Something bad happened'});
-        }
-        var qry = 'SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r'
-        var query = client.query(qry);
-
-        query.on('row', function(row) {
-            restaurants.push(row);
-        });
-
-        query.on('end', function(){
-            res.render('index', {
-                title: "Impressions",
-                array: restaurants
-            });
-            done();
-        });
-
-    pg.end();
+    db.any('SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r')
+    .then(function(data) {
+        res.render('index', {
+            title: 'Impressions',
+            array: data
+        })
+    })
+    .catch(function (err) {
+    return next(err);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/new', function(req, res, next) {
     var restaurants = [];
