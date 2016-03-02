@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var fixDate = require('./fixFunctions');
 
 var options = {};
 var pgp = require('pg-promise')(options);
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/restaurant_crud';
 var db = pgp(connectionString);
 
-
+// =========== GETS =================
 router.get('/', function(req, res, next) {
     db.any('SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r')
     .then(function(data) {
@@ -17,143 +17,60 @@ router.get('/', function(req, res, next) {
         })
     })
     .catch(function (err) {
-    return next(err);
+        return next(err);
     });
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.get('/new', function(req, res, next) {
-    var restaurants = [];
     res.render('new', {
         title: 'Add New Restaurant',
         header: 'Add New Restaurant',
     })
-
 });
 
-router.get('/restaurants/:restaurantId/edit', function(req, res, next) {
-  var uriId = req.params.restaurantId;
-  console.log('get');
-  if(!uriId) {
-    next();
-    return;
-  }
-  pg.connect(connectionString, function(err, client, done) {
-    if(err) {
-        done();
-        return res.status(500).json({status: 'error', message: 'Something bad happened'});
-    }
-        var qry = 'SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r WHERE r.id =' + uriId;
-        var query = client.query(qry);
-        console.log("Query string is", qry);
-        query.on('row', function(row) {
-            var restaurant = row;
-            restaurant.ratings = [];
-
-            var ratingsQry = 'SELECT * FROM ratings WHERE restaurant_id='+uriId;
-            var query2 = client.query(ratingsQry);
-
-            query2.on('row', function(row) {
-                var options = { year: 'numeric', month: 'long', day: 'numeric' };
-                row.review_date = new Intl.DateTimeFormat('en-US', options).format(row.review_date);
-                row.short_review = row.review.substring(0, 35);
-                console.log(row.review_date);
-
-                restaurant.ratings.push(row);
-            });
-            query2.on('end', function() {
-                var ratingsObj = restaurant.ratings;
-                console.log(ratingsObj.review_date);
-
-                res.render('edit', {
-                    title: restaurant.name,
-                    header: restaurant.name,
-                    ratings: restaurant.ratings,
-                    restaurant: restaurant
-                });
-                done();
-            });
-        });
-    pg.end();
-  });
-});
-
-
-router.get('/restaurants/:restaurantId', function(req, res, next) {
-  var uriId = req.params.restaurantId;
-  if(!uriId) {
-    next();
-    return;
-  }
-    pg.connect(connectionString, function(err, client, done) {
-        if(err) {
-            done();
-            return res.status(500).json({status: 'error', message: 'Something bad happened'});
-        }
-        var qry = 'SELECT r.*, (SELECT ROUND(AVG(rating)) FROM ratings WHERE restaurant_id = r.id) as rating from restaurants r WHERE r.id =' + uriId;
-        var query = client.query(qry);
-        console.log("Query string is", qry);
-        query.on('row', function(row) {
-            var restaurant = row;
-            restaurant.ratings = [];
-
-            var ratingsQry = 'SELECT * FROM ratings WHERE restaurant_id='+uriId;
-            var query2 = client.query(ratingsQry);
-
-            query2.on('row', function(row) {
-                var options = { year: 'numeric', month: 'long', day: 'numeric' };
-                row.review_date = new Intl.DateTimeFormat('en-US', options).format(row.review_date);
-                row.short_review = row.review.substring(0, 35);
-                console.log(row.review_date);
-
-                restaurant.ratings.push(row);
-            });
-            query2.on('end', function() {
-                var ratingsObj = restaurant.ratings;
-                console.log(ratingsObj.review_date);
-
-                res.render('show', {
-                    title: restaurant.name,
-                    header: restaurant.name,
-                    ratings: restaurant.ratings,
-                    restaurant: restaurant
-                });
-                done();
-            });
-        });
-    pg.end();
+router.get('/restaurants/:id', function(req, res, next) {
+    var url_id = req.params.id;
+    db.one('SELECT * FROM restaurants WHERE id = ' + url_id)
+    .then(function (restaurant) {
+        var id = restaurant.id;
+        return db.any('SELECT * FROM ratings WHERE restaurant_id = ' + id)
+          .then(function(ratings) {
+            for (i in ratings) {
+                ratings[i].short_review = ratings[i].review.substring(0, 35);
+                ratings[i].review_date = fixDate(ratings[i].review_date);
+            }
+            restaurant.ratings = ratings;
+            return restaurant;
+          });
+    })
+    .then(function (restaurant) {
+        res.render('show', {
+            title: restaurant.name,
+            header: restaurant.name,
+            ratings: restaurant.ratings,
+            restaurant: restaurant
+        })
+    })
+    .catch(function (err) {
+        return next(err);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post('/restaurants/:restaurantId', function(req, res, next) {
   var uriId = req.params.restaurantId;
