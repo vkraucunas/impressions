@@ -13,19 +13,12 @@ $(document).on('ready', function() {
             }
         }
     });
-    var string;
-    var shortenedString;
 
     $('.showMoreTextLink').on('click', function() {
       var a =$(this).parent().parent();
       $(a).find('.reviewText').toggle();
     })
 
-
-
-    // $('.ellipses').on('click', function() {
-    //   $(
-    // })
 
     var states = { AL: 'Alabama',
                    AK: 'Alaska',
