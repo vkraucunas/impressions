@@ -24,6 +24,10 @@ body {
     border-bottom: 1px solid white;
 }
 
+.right {
+    margin-left: 98%;
+}
+
 
 .inline {
     display: inline;

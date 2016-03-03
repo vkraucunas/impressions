@@ -16,12 +16,14 @@
                 <br><br>
                 <p>{{restaurant.description}}</p>
                 <p class="inline">Rating: </p>
-                <div class="inline ratingStars" data-rating-value='{{restaurant.rating}}'>
+                <div class="inline ratingStars" data-rating-value='{{restaurant.rating_num}}'>
                 </div>
                 <br><br>
                 <a href="./{{restaurant.id}}/edit"><button class="btn btn-md btn-success">Edit</button></a>
-                <a href="#"><button class="btn btn-md btn-danger">Delete</button></a>
-                <a href="#"><button class="btn btn-md btn-info">Add Review</button></a>
+                <form method="post" action="/restaurants/{{restaurant.id}}/delete">
+                    <input type="submit" class="btn btn-md btn-danger" value="Delete"></input>
+                </form>
+                <a href="./{{restaurant.id}}/reviews/new"><button class="btn btn-md btn-info"> Review {{restaurant.name}}</button></a>
             </div>
         </div>
         <div class="row">
@@ -64,7 +66,7 @@
                             <p class="reviewText longText" style="display: none;">"{{rating.review}}"</p>
                             <p class="reviewText shortText">"{{rating.short_review}}<a class="showMoreTextLink">...</a>"</p>
                             <div class="inline ratingStars" data-rating-value={{rating.rating}}></div>
-                            <a href="#">Edit</a>
+                            <a href="/restaurants/{{restaurant.id}}/reviews/{{rating.id}}/edit">Edit</a>
                         </div>
                     </div>
                 {%endfor%}

@@ -6,47 +6,47 @@
 {% block content %}
 
     <div class="container">
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST" action="/restaurants">
             <fieldset>
                 <legend>Add Restaurant</legend>
                     <div class="form-group">
                         <label for="inputEmail" class="col-lg-2 control-label">Name</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="name" maxlength="40" placeholder="Restaurant Name" value="{{restaurant.name}}">
+                            <input type="text" class="form-control" name="name" maxlength="40" placeholder="Restaurant Name" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Location</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="city" placeholder="City" value="{{restaurant.city}}">
+                            <input type="text" class="form-control" name="city" placeholder="City">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">State</label>
                         <div class="col-lg-2">
-                            <select class="form-control statesDropDown" id="select">
-                                <option>{{restaurant.state}}</option>
+                            <select class="form-control statesDropDown" name="state">
+                                <option disabled="">Select State</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Cuisine</label>
                         <div class="col-lg-2">
-                            <select class="form-control foodTypeDropDown" id="select">
-                                <option>{{restaurant.food_type}}</option>
+                            <select class="form-control foodTypeDropDown" name="food_type">
+                                <option></option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Image</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="imageSource" placeholder="Image source url">
+                            <input type="text" class="form-control" name="img" placeholder="Image source url">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Brief Description</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="textArea" maxlength="500">{{restaurant.description}}</textarea>
+                            <textarea class="form-control" rows="3" name="description" maxlength="500"></textarea>
                             <span class="help-block">500 character max.</span>
                         </div>
                     </div>
