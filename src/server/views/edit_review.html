@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="container">
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST" action="/restaurants/{{restaurant.id}}/reviews/{{review.id}}/edit">
             <fieldset>
                 <legend> </legend>
                 <div class="form-group">
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="textArea" class="col-lg-2 control-label">Review</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" minlength="20" id="textArea" name="review"maxlength="500" placeholder="Share your experience" required>{{review.review}}</textarea>
+                        <textarea class="form-control" rows="3" minlength="20" id="textArea" name="review" maxlength="500" placeholder="Share your experience" required>{{review.review}}</textarea>
                         <span class="help-block">500 character max.</span>
                     </div>
                 </div>

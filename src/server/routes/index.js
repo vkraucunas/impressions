@@ -93,14 +93,16 @@ router.get('/restaurants/:id/reviews/new', function(req, res, next) {
 });
 
 router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
+
     var url_id = req.params.review_id;
     db.one('SELECT * FROM ratings WHERE id ='+url_id)
     .then(function(review) {
         review.review_date = fixDate(review.review_date);
+        console.log(review);
         res.render('edit_review', {
             title: 'Edit Your Review',
             header: 'Edit Review',
-            review: review
+            review: review,
         })
     })
     .catch(function (err) {
@@ -141,7 +143,24 @@ router.post('/restaurants/:id/delete', function(req, res, next) {
     });
 });
 
+router.post('/restaurants/:id/reviews', function(req, res, next) {
+    db.none('INSERT INTO ratings (restaurant_id, user_name, rating, review, review_date) VALUES ($1, $2, $3, $4, $5)', [req.params.id, req.body.user_name, req.body.rating, req.body.review, req.body.review_date])
+    .then(function(){
+        res.redirect('/restaurants/'+req.params.id)
+    })
+    .catch(function (err) {
+        return next(err);
+    });
+});
 
-
+router.post('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
+    db.none('UPDATE ratings SET (user_name, rating, review, review_date) = ($1, $2, $3, $4, $5) WHERE id = '+req.params.review_id, [req.body.user_name, req.body.rating, req.body.review, req.body.review_date])
+    .then(function() {
+        res.redirect('/restaurants/'+req.params.id);
+    })
+    .catch(function (err) {
+        return next(err);
+    });
+});
 
 module.exports = router;
