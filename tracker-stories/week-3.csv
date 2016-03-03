@@ -1,0 +1,20 @@
+Id,Title,Labels,Iteration,Iteration Start,Iteration End,Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By,Task,Task Status,Task,Task Status
+114970679,Validate that reviewers do not review a restaurant twice,server-side validations,,,,feature,,unscheduled,"Mar 3, 2016",,,Wes Reid,"Reviewers should only be able to review an individual restaurant once. When a review is submitted, on the server check the reviews for that restaurant and return an error if the submitted name matches a name on an existing review. This check should be case insensitive.
+
+__Acceptance Criteria:__
+* If you create a review that has the same name as an already existing review, an error should be returned to the user from the server describing the problem.
+* All information should remain on the page; that is, the reviewer's name should still be in the form.",https://www.pivotaltracker.com/story/show/114970679,,"If you create a review that has the same name as an already existing review, an error should be returned to the user from the server describing the problem.",not completed,"All information should remain on the page; that is, the reviewer's name should still be in the form.",not completed
+114970529,Validate that restaurants do not share names,server-side validations,,,,feature,,unscheduled,"Mar 3, 2016",,,Wes Reid,"Restaurants should not be able to share the same name. Create a server-side validation that returns an error to the user if the restaurant name overlaps with an existing restaurant. This check should be case insensitive.
+
+__Acceptance Criteria:__
+* If you create a restaurant that has the same name as an already existing restaurant, an error should be returned to the user from the server describing the problem.
+* All information should remain on the page; that is, the restaurant name should still be in the form.",https://www.pivotaltracker.com/story/show/114970529,,"If you create a restaurant that has the same name as an already existing restaurant, an error should be returned to the user from the server describing the problem.",not completed,"All information should remain on the page; that is, the restaurant name should still be in the form.",not completed
+114970113,SQL Queries should be structured using Knex.js,refactor,,,,feature,,unscheduled,"Mar 3, 2016",,,Wes Reid,"Refactor your plain SQL queries into magical Knex.js. Create migrations for each table you need in your application. Create seed files for your restaurants and any reviews you want.
+
+__Acceptance Criteria:__
+* Queries to the database use knex.js
+* Migrations and seed files run",https://www.pivotaltracker.com/story/show/114970113,
+114969603,Separate DB Queries into a different file,refactor,,,,feature,,unscheduled,"Mar 3, 2016",,,Wes Reid,"Clean up your code by separating all your queries into a different file.
+
+__Acceptance Criteria:__
+* All queries to your DB should be in at least one other file called `queries`",https://www.pivotaltracker.com/story/show/114969603,,All queries to your DB should be in at least one other file called `queries`,not completed
