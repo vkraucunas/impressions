@@ -29,12 +29,13 @@ router.get('/restaurants/:id', function(req, res, next) {
     var url_id = req.params.id;
     queries.show(url_id)
     .then(function (restaurant) {
-        console.log(restaurant[0].name);
+        console.log(restaurant);
+        var restaurant_info = restaurant[0];
         res.render('show', {
-            title: restaurant[0].name,
-            header: restaurant[0].name,
+            title: restaurant_info.name,
+            header: restaurant_info.name,
             ratings: restaurant.ratings,
-            restaurant: restaurant[0]
+            restaurant: restaurant_info
         });
     })
     .catch(function (err) {
@@ -44,28 +45,28 @@ router.get('/restaurants/:id', function(req, res, next) {
 
 router.get('/restaurants/:id/edit', function(req, res, next) {
     var url_id = req.params.id;
-    db.one('SELECT * FROM restaurants WHERE id = ' + url_id)
+    queries.editRestaurant(url_id)
     .then(function (restaurant) {
         res.render('edit', {
             title: 'Edit '+restaurant[0].name,
             header: 'Edit '+restaurant[0].name,
             restaurant: restaurant[0]
-        })
+        });
     })
     .catch(function (err) {
         return next(err);
     });
-})
+});
 
 router.get('/restaurants/:id/reviews/new', function(req, res, next) {
     var url_id = req.params.id;
-    db.one('SELECT id, name FROM restaurants WHERE id = ' + url_id)
+    queries.editRestaurant(url_id)
     .then(function (restaurant) {
         res.render('new_review', {
             title: 'New Review',
-            header: 'Leave a Review for '+restaurant.name,
-            restaurant: restaurant
-        })
+            header: 'Leave a Review for '+restaurant[0].name,
+            restaurant: restaurant[0]
+        });
     })
     .catch(function (err) {
         return next(err);
@@ -75,7 +76,7 @@ router.get('/restaurants/:id/reviews/new', function(req, res, next) {
 router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
     var rest_id= req.params.id;
     var url_review_id = req.params.review_id;
-    db.one('SELECT * FROM ratings WHERE id ='+url_review_id)
+    queries.allRatings().where('id', url_review_id)
     .then(function(review) {
         review.review_date = fixDate(review.review_date);
         console.log(review);

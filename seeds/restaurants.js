@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
         name: 'Phomiliar',
         img: '../images/pho1.jpg',
         food_type: 'Vietnamese',
-        city: 'Vietnamese',
+        city: 'Austin',
         state: 'TX',
         description: 'Award winning food and Pho soup are sure to satisfy all of the Pho-natics and first-timers alike. Don&#39;t take our word for it... Stop by one of their two locations!'
     }),
