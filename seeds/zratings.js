@@ -6,7 +6,6 @@ exports.seed = function(knex, Promise) {
 
     // Inserts seed entries
     knex('ratings').insert({
-        id: 1,
         restaurant_id: 1,
         user_name: 'Xander_Swift',
         rating: 5,
@@ -14,7 +13,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'July 20, 2014'
     }),
     knex('ratings').insert({
-        id: 2,
         restaurant_id: 1,
         user_name: 'Kaia95',
         rating: 5,
@@ -22,7 +20,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'January 23, 2015'
     }),
     knex('ratings').insert({
-        id: 3,
         restaurant_id: 2,
         user_name: 'Coy_Fay59',
         rating: 4,
@@ -30,7 +27,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'May 5, 2013'
     }),
     knex('ratings').insert({
-        id: 4,
         restaurant_id: 2,
         user_name: 'Alize74',
         rating: 1,
@@ -38,7 +34,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'March 30, 2015'
     }),
     knex('ratings').insert({
-        id: 5,
         restaurant_id: 3,
         user_name: 'Naomie4',
         rating: 4,
@@ -46,7 +41,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'April 28, 2015'
     }),
     knex('ratings').insert({
-        id: 6,
         restaurant_id: 3,
         user_name: 'Hodor',
         rating: 3,
@@ -54,7 +48,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'December 18, 2014'
     }),
     knex('ratings').insert({
-        id: 7,
         restaurant_id: 4,
         user_name: 'Ramiro_Nader86',
         rating: 1,
@@ -62,7 +55,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'October 14, 2015'
     }),
     knex('ratings').insert({
-        id: 8,
         restaurant_id: 4,
         user_name: 'Marcelino_Pagac',
         rating: 3,
@@ -70,7 +62,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'June 21, 2014'
     }),
     knex('ratings').insert({
-        id: 9,
         restaurant_id: 5,
         user_name: 'Scotty_Cronin93',
         rating: 1,
@@ -78,7 +69,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'June 3, 2015'
     }),
     knex('ratings').insert({
-        id: 10,
         restaurant_id: 5,
         user_name: 'Erin31',
         rating: 4,
@@ -86,7 +76,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'March 25, 2014'
     }),
     knex('ratings').insert({
-        id: 11,
         restaurant_id: 6,
         user_name: 'Bryana_Weimann',
         rating: 5,
@@ -94,7 +83,6 @@ exports.seed = function(knex, Promise) {
         review_date: 'October 29, 2014'
     }),
     knex('ratings').insert({
-        id: 12,
         restaurant_id: 6,
         user_name: 'Edwin.Schinner6',
         rating: 3,
