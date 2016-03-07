@@ -148,15 +148,55 @@ router.post('/restaurants/:id/delete', function(req, res, next) {
     });
 });
 
+
+
+
+
+
+
+
+
 router.post('/restaurants/:id/reviews', function(req, res, next) {
-    queries.allRatings().insert({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
-    .then(function(){
-        res.redirect('/restaurants/'+req.params.id);
-    })
-    .catch(function (err) {
-        return next(err);
+    validate.userName(req.body.user_name, req.params.id).then(function (data) {
+        if (!data) {
+            queries.allRatings().insert({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
+            .then(function(){
+                res.redirect('/restaurants/'+req.params.id);
+            })
+            .catch(function (err) {
+                return next(err);
+            });
+        } else {
+            queries.editRestaurant(req.params.id)
+            .then(function (restaurant) {
+                res.render('new_review', {
+                    title: 'New Review',
+                    header: 'Leave a Review for '+restaurant[0].name,
+                    restaurant: restaurant[0],
+                    date: new Date(),
+                    restID : req.params.id,
+                    message: data,
+                    refill: req.body
+                });
+            })
+            .catch(function (err) {
+                return next(err);
+            });
+
+        }
     });
+
 });
+
+
+
+
+
+
+
+
+
+
 
 router.post('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
     queries.allRatings().where('id', req.params.review_id).update({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})

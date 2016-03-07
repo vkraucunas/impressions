@@ -5,13 +5,16 @@
 
 {% block content %}
     <div class="container">
+        {% if refill %}
+            <h4 class="warningColor"><span class="glyphicon glyphicon-fire"></span>   {{message}}</h4>
+        {% endif %}
         <form class="form-horizontal" method="POST" action='/restaurants/{{restID}}/reviews'>
             <fieldset>
                 <legend> </legend>
                     <div class="form-group">
                         <label for="inputEmail" class="col-lg-2 control-label">User Name</label>
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" id="name" name="user_name" placeholder="User Name" required>
+                            <input type="text" class="form-control" id="name" name="user_name" placeholder="User Name" value="{{refill.user_name}}" autofocus required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -24,13 +27,18 @@
                         <label for="textArea" class="col-lg-2 control-label">Rating</label>
                         <div class="col-lg-4">
                             <span class="glyphicon glyphicon-thumbs-down"></span><span class="glyphicon glyphicon-thumbs-up right"></span>
-                            <input type="range" name='rating' min="1" max="5" value="3" step="1" required />
+                            {% if refill %}
+                                <input type="range" name='rating' min="1" max="5" value="{{refill.rating}}" step="1" required />
+                            {% else %}
+                                <input type="range" name='rating' min="1" max="5" value="3" step="1" required />
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Review</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="textArea" name="review"maxlength="500" placeholder="Share your experience" required></textarea>
+                            <textarea class="form-control" rows="3" id="textArea" name="review"maxlength="500" placeholder="Share your experience" required>{{refill.review}}</textarea>
                             <span class="help-block">500 character max.</span>
                         </div>
                     </div>

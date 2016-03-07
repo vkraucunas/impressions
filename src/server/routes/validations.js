@@ -2,9 +2,7 @@ var queries = require('./queries');
 
 
 function restaurantName(newName) {
-    console.log('here');
     var result;
-    var existingNames;
     return queries.allRestaurants().select('name')
     .then(function(names) {
         var existingNames = [];
@@ -19,6 +17,24 @@ function restaurantName(newName) {
     });
 }
 
+function userName(newName, restaurant_id) {
+    var result;
+    return queries.allRatings().where('restaurant_id', restaurant_id)
+    .then(function(reviews) {
+        var existingUsers = [];
+        for (var i = 0; i < reviews.length; i++) {
+            existingUsers.push(reviews[i].user_name);
+        }
+
+        if (existingUsers.indexOf(newName) != -1) {
+            result = 'You have already left a review for this restaurant!';
+        }
+        return result;
+    });
+}
+
+
 module.exports = {
-    restaurantName: restaurantName
+    restaurantName: restaurantName,
+    userName: userName
 };
