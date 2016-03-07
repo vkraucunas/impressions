@@ -116,7 +116,7 @@ router.post('/restaurants/:id/edit', function(req, res, next) {
 
 
 router.post('/restaurants/:id/delete', function(req, res, next) {
-    db.none('DELETE FROM restaurants WHERE id = '+req.params.id)
+    queries.editRestaurant(req.params.id).del()
     .then(function() {
         res.redirect('/');
     })
