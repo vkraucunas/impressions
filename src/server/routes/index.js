@@ -65,7 +65,8 @@ router.get('/restaurants/:id/reviews/new', function(req, res, next) {
         res.render('new_review', {
             title: 'New Review',
             header: 'Leave a Review for '+restaurant[0].name,
-            restaurant: restaurant[0]
+            restaurant: restaurant[0],
+            restID : req.params.id
         });
     })
     .catch(function (err) {
