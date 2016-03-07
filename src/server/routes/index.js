@@ -105,7 +105,7 @@ router.post('/restaurants', function(req, res, next) {
 });
 
 router.post('/restaurants/:id/edit', function(req, res, next) {
-    db.none('UPDATE restaurants SET (name, city, state, food_type, description) = ($1, $2, $3, $4, $5) WHERE id = '+req.params.id, [req.body.name, req.body.city, req.body.state, req.body.food_type, req.body.description])
+    queries.editRestaurant(req.params.id).update({name: req.body.name, img: req.body.img, food_type: req.body.food_type, city: req.body.city, state: req.body.state, description: req.body.description})
     .then(function() {
         res.redirect('/restaurants/'+req.params.id);
     })
