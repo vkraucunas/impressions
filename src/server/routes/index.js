@@ -65,6 +65,7 @@ router.get('/restaurants/:id/reviews/new', function(req, res, next) {
             title: 'New Review',
             header: 'Leave a Review for '+restaurant[0].name,
             restaurant: restaurant[0],
+            date: new Date(),
             restID : req.params.id
         });
     })
@@ -76,7 +77,7 @@ router.get('/restaurants/:id/reviews/new', function(req, res, next) {
 router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
     var rest_id= req.params.id;
     var url_review_id = req.params.review_id;
-    queries.allRatings().where('id', url_review_id)
+    queries.editReview(url_review_id)
     .then(function(review) {
         console.log(review);
         review = review[0];
