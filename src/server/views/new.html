@@ -6,26 +6,33 @@
 {% block content %}
 
     <div class="container">
+        {% if refill %}
+            <h4 class="warningColor"><span class="glyphicon glyphicon-fire"></span>  {{message}}</h4>
+        {% endif %}
         <form class="form-horizontal" method="POST" action="/restaurants">
             <fieldset>
                 <legend>Add Restaurant</legend>
                     <div class="form-group">
                         <label for="inputEmail" class="col-lg-2 control-label">Name</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="name" maxlength="40" placeholder="Restaurant Name" >
+                            <input type="text" class="form-control" name="name" maxlength="40" placeholder="Restaurant Name" value="{{refill.name}}" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Location</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="city" placeholder="City">
+                            <input type="text" class="form-control" name="city" placeholder="City" value="{{refill.city}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">State</label>
                         <div class="col-lg-2">
                             <select class="form-control statesDropDown" name="state">
-                                <option disabled="">Select State</option>
+                                {% if refill %}
+                                    <option>{{refill.state}}</option>
+                                {% else %}
+                                    <option disabled="">Select State</option>
+                                {% endif %}
                             </select>
                         </div>
                     </div>
@@ -33,20 +40,24 @@
                         <label for="textArea" class="col-lg-2 control-label">Cuisine</label>
                         <div class="col-lg-2">
                             <select class="form-control foodTypeDropDown" name="food_type">
-                                <option></option>
+                                {% if refill %}
+                                    <option>{{refill.food_type}}</option>
+                                {% else %}
+                                    <option disabled="">Select Cuisine</option>
+                                {% endif %}
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Image</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="img" placeholder="Image source url">
+                            <input type="text" class="form-control" name="img" placeholder="Image source url" value="{{refill.img}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textArea" class="col-lg-2 control-label">Brief Description</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" name="description" maxlength="500"></textarea>
+                            <textarea class="form-control" rows="3" name="description" maxlength="500">{{refill.description}}</textarea>
                             <span class="help-block">500 character max.</span>
                         </div>
                     </div>
