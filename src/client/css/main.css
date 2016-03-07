@@ -49,3 +49,7 @@ h1.center {
     text-align: center;
     width: 100%;
 }
+
+.warningColor {
+    color: #E637BF;
+}

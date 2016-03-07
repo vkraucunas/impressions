@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fixDate = require('./fixFunctions');
+var validate = require('./validations');
 var queries = require('./queries');
 
 // =========== GETS =================
@@ -105,12 +106,24 @@ router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) 
 
 //+++++++++++++++++++ POSTS +++++++++++++++++++
 router.post('/restaurants', function(req, res, next) {
-    queries.allRestaurants().insert({name: req.body.name, img: req.body.img, food_type: req.body.food_type, city: req.body.city, state: req.body.state, description: req.body.description})
-    .then(function() {
-        res.redirect('/');
-    })
-    .catch(function (err) {
-        return next(err);
+    validate.restaurantName(req.body.name)
+    .then(function(data) {
+        if (!data) {
+            queries.allRestaurants().insert({name: req.body.name, img: req.body.img, food_type: req.body.food_type, city: req.body.city, state: req.body.state, description: req.body.description})
+            .then(function() {
+                res.redirect('/');
+            })
+            .catch(function (err) {
+                return next(err);
+            });
+        } else {
+            res.render('new', {
+                title: 'Add New Restaurant',
+                header: 'Add New Restaurant',
+                refill: req.body,
+                message: data
+            });
+        }
     });
 });
 
@@ -144,10 +157,6 @@ router.post('/restaurants/:id/reviews', function(req, res, next) {
         return next(err);
     });
 });
-
-
-
-
 
 router.post('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
     queries.allRatings().where('id', req.params.review_id).update({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
