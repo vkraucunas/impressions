@@ -95,8 +95,7 @@ router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) 
 
 //+++++++++++++++++++ POSTS +++++++++++++++++++
 router.post('/restaurants', function(req, res, next) {
-    console.log(req.body);
-    db.none('INSERT INTO restaurants (name, img, food_type, city, state, description) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.name, req.body.img, req.body.food_type, req.body.city, req.body.state, req.body.description])
+    queries.allRestaurants().insert({name: req.body.name, img: req.body.img, food_type: req.body.food_type, city: req.body.city, state: req.body.state, description: req.body.description})
     .then(function() {
         res.redirect('/');
     })
