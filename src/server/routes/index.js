@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-
 router.get('/new', function(req, res, next) {
     res.render('new', {
         title: 'Add New Restaurant',
@@ -95,15 +94,6 @@ router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) 
     });
 });
 
-
-
-
-
-
-
-
-
-
 //+++++++++++++++++++ POSTS +++++++++++++++++++
 router.post('/restaurants', function(req, res, next) {
     validate.restaurantName(req.body.name)
@@ -124,6 +114,9 @@ router.post('/restaurants', function(req, res, next) {
                 message: data
             });
         }
+    })
+    .catch(function (err) {
+        return next(err);
     });
 });
 
@@ -137,7 +130,6 @@ router.post('/restaurants/:id/edit', function(req, res, next) {
     });
 });
 
-
 router.post('/restaurants/:id/delete', function(req, res, next) {
     queries.editRestaurant(req.params.id).del()
     .then(function() {
@@ -147,14 +139,6 @@ router.post('/restaurants/:id/delete', function(req, res, next) {
         return next(err);
     });
 });
-
-
-
-
-
-
-
-
 
 router.post('/restaurants/:id/reviews', function(req, res, next) {
     validate.userName(req.body.user_name, req.params.id).then(function (data) {
@@ -182,21 +166,9 @@ router.post('/restaurants/:id/reviews', function(req, res, next) {
             .catch(function (err) {
                 return next(err);
             });
-
         }
     });
-
 });
-
-
-
-
-
-
-
-
-
-
 
 router.post('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
     queries.allRatings().where('id', req.params.review_id).update({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
