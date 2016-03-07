@@ -29,7 +29,6 @@ router.get('/restaurants/:id', function(req, res, next) {
     var url_id = req.params.id;
     queries.show(url_id)
     .then(function (restaurant) {
-        console.log(restaurant);
         var restaurant_info = restaurant[0];
         res.render('show', {
             title: restaurant_info.name,
@@ -79,19 +78,29 @@ router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) 
     var url_review_id = req.params.review_id;
     queries.allRatings().where('id', url_review_id)
     .then(function(review) {
-        review.review_date = fixDate(review.review_date);
         console.log(review);
+        review = review[0];
+        review.review_date = fixDate(review.review_date);
         res.render('edit_review', {
             title: 'Edit Your Review',
             header: 'Edit Review',
             review: review,
             rest_id: rest_id
-        })
+        });
     })
     .catch(function (err) {
         return next(err);
     });
-})
+});
+
+
+
+
+
+
+
+
+
 
 //+++++++++++++++++++ POSTS +++++++++++++++++++
 router.post('/restaurants', function(req, res, next) {
@@ -135,8 +144,12 @@ router.post('/restaurants/:id/reviews', function(req, res, next) {
     });
 });
 
+
+
+
+
 router.post('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) {
-    db.none('UPDATE ratings SET (user_name, rating, review, review_date) = ($1, $2, $3, $4) WHERE id = '+req.params.review_id, [req.body.user_name, req.body.rating, req.body.review, req.body.review_date])
+    queries.allRatings().where('id', req.params.review_id).update({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
     .then(function() {
         res.redirect('/restaurants/'+req.params.id);
     })

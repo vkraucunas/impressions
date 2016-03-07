@@ -44,11 +44,6 @@ module.exports = {
                     ratings[i].review_date = fixDate(ratings[i].review_date);
                 }
                 restaurant.ratings = ratings;
-                // var sum = 0;
-                // for( var j = 0; j < restaurant.ratings.length; j++ ){
-                //     sum += parseInt( restaurant.ratings[j], ratings.length );
-                // }
-                // restaurant.rating_avg = sum/restaurant.ratings.length;
                 return restaurant;
             });
         });
