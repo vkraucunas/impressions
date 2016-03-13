@@ -3,6 +3,9 @@ var router = express.Router();
 var knex = require('../../../db/knex');
 var fixDate = require('./fixFunctions');
 
+function Users() {
+    return knex('users');
+}
 
 function Restaurants() {
     return knex('restaurants');
@@ -47,5 +50,11 @@ module.exports = {
                 return restaurant;
             });
         });
+    },
+    users: function() {
+        return Users();
+    },
+    findUser: function(id) {
+        return Users().where('id', id);
     }
 };
