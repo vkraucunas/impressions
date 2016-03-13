@@ -6,55 +6,81 @@ exports.seed = function(knex, Promise) {
 
     // Inserts seed entries
     knex('users').insert({
-        user_name: 'Xander_Swift',
+        facebook_id: 'abc',
+        first_name: 'Xander',
+        last_name: 'Swift',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Kaia95',
+        facebook_id: 'bcd',
+        first_name: 'Kaia',
+        last_name: 'Fer',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Coy_Fay59',
+        facebook_id: 'cde',
+        first_name: 'Coy',
+        last_name: 'Fay',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Alize74',
+        facebook_id: 'def',
+        first_name: 'Alize',
+        last_name: 'Black',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Naomie4',
+        facebook_id: 'efg',
+        first_name: 'Naomie',
+        last_name: 'Jones',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Hodor',
+        facebook_id: 'fgh',
+        first_name: 'Hodor',
+        last_name: 'Hodor',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Ramiro_Nader86',
+        facebook_id: 'ghi',
+        first_name: 'Ramiro',
+        last_name: 'Nadet',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Marcelino_Pagac',
+        facebook_id: 'hij',
+        first_name: 'Marcelino',
+        last_name: 'Pagac',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Scotty_Cronin93',
+        facebook_id: 'ijk',
+        first_name: 'Scotty',
+        last_name: 'Cronin',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Erin31',
+        facebook_id: 'jkl',
+        first_name: 'Erin',
+        last_name: 'Henn',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Bryana_Weimann',
+        facebook_id: 'klm',
+        first_name: 'Bryana',
+        last_name: 'Weimann',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'Edwin.Schinner6',
+        facebook_id: 'lmn',
+        first_name: 'Edwin',
+        last_name: 'Schinn',
         password: 'stuff'
     }),
     knex('users').insert({
-        user_name: 'VJK',
+        facebook_id: 'mno',
+        first_name: 'Val',
+        last_name: 'Vitkus',
         password: 'passing',
         admin: true
     })

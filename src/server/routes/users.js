@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 var fixDate = require('../lib/fixFunctions');
 var validate = require('../lib/validations');
+var helpers = require('../lib/helpers');
 
 
-router.get('/restaurants/:id/reviews/new', function(req, res, next) {
+router.get('/restaurants/:id/reviews/new', helpers.ensureAuthenticated, function(req, res, next) {
     var url_id = req.params.id;
     queries.editRestaurant(url_id)
     .then(function (restaurant) {

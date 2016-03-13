@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var queries = require('../lib/queries');
 
+
 router.get('/', function(req, res, next) {
     queries.homepage()
     .then(function(data) {
         res.render('index', {
             title: 'Impressions',
-            array: data.rows
+            array: data.rows,
+            user: req.user
         });
     })
     .catch(function (err) {
@@ -24,7 +26,8 @@ router.get('/restaurants/:id', function(req, res, next) {
             title: restaurant_info.name,
             header: restaurant_info.name,
             ratings: restaurant.ratings,
-            restaurant: restaurant_info
+            restaurant: restaurant_info,
+            user: req.user
         });
     })
     .catch(function (err) {
