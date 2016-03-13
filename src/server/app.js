@@ -12,6 +12,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook');
 var queries = require('./lib/queries');
 
+
 // *** routes *** //
  var routes = require('./routes/index.js');
  var users = require('./routes/users.js');
@@ -52,7 +53,8 @@ passport.use(new FacebookStrategy({
     clientSecret: process.env.FACEBOOK_SECRET_KEY,
     callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
+  function(accessToken, refreshToken, profile, callback) {
+    console.log(this);
     queries.users().where('facebook_id', profile.id).then(function(data) {
         if (data.length) {
             return data[0].id;
@@ -66,8 +68,9 @@ passport.use(new FacebookStrategy({
             return id[0];
           });
         }
-      })
-    //console.log(profile);
+      }).then(function(user) {
+        return callback(null, user);
+   });
   }
 ));
 
@@ -84,7 +87,7 @@ passport.deserializeUser(function(userId, done) {
   // user each time from it's id, after you set up your db
 
   if ( userId ) {
-    knex('users')
+    queries.users()
       .where({ id: userId })
       .first()
       .then(function (user) {
