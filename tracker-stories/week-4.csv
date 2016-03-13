@@ -1,0 +1,23 @@
+Id,Title,Labels,Iteration,Iteration Start,Iteration End,Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By,Task,Task Status,Task,Task Status,Task,Task Status,Task,Task Status
+115454519,"As an Admin, I want to be able to Create, Update, and Delete restaurants",authentication and authorization,,,,feature,,unscheduled,"Mar 10, 2016",,,Wes Reid,"Only Admin users should be able to create, update, and delete restaurants. For other users, these buttons should not be visible.
+
+__Acceptance Criteria:__
+* CRUD buttons/links for restaurants should only be visible to Admin users
+* Only Admin users can use these routes",https://www.pivotaltracker.com/story/show/115454519,
+115453861,"As a User, I want to be able to create new reviews.",authentication and authorization,,,,feature,,unscheduled,"Mar 10, 2016",,,Wes Reid,"As a logged-in User, I should be able to see the Create Review button and create a review.
+
+__Acceptance Criteria:__
+* New Review button should be visible to logged-in users
+* New reviews can be created by logged-in users only
+* The user's name is automatically included in the review",https://www.pivotaltracker.com/story/show/115453861,,New Review button should be visible to logged-in users,not completed,New reviews can be created by logged-in users only,not completed,The user's name is automatically included in the review,not completed
+115452883,"As a visitor of the site, I want to be able to create an account by signing in with an OAuth service in order to write reviews for restaurants.",authentication and authorization,,,,feature,,unscheduled,"Mar 10, 2016",,,Wes Reid,"As a visitor of your site, I want to be able to create an account so that I can write reviews. I also want to be able to register and login via an OAuth service (like LinkedIn, Google, or Facebook).
+
+__Acceptance Criteria:__
+* There is a login/register link/button on the homepage
+* When it is clicked on, it goes to verify the user via the external service
+* A new user is created in a database when everything goes successfully
+* The user is logged in on success and redirected to the homepage",https://www.pivotaltracker.com/story/show/115452883,,There is a login/register link/button on the homepage,not completed,"When it is clicked on, it goes to verify the user via the external service",not completed,A new user is created in a database when everything goes successfully,not completed,The user is logged in on success,not completed
+115453639,"As a visitor of the site, I should not be able to see any links related to creating, editing, or deleting.",authentication and authorization,,,,feature,,unscheduled,"Mar 10, 2016",,,Wes Reid,"Visitors to the site should not be able to take any actions that manipulate the database. This includes creating, updating, or deleting anything.
+
+__Acceptance Criteria:__
+* Buttons that perform CRUD operations on your database should be hidden for regular visitors (but, don't delete them!)",https://www.pivotaltracker.com/story/show/115453639,
