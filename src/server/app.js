@@ -33,7 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/',express.static(path.join(__dirname, '../client')));
-// app.use('/show/', express.static(path.join(__dirname, '../client/pages')));
 app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
@@ -45,7 +44,6 @@ app.use('/', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  //console.log(req);
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

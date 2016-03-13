@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var fixDate = require('./fixFunctions');
-var validate = require('./validations');
+var fixDate = require('../lib/fixFunctions');
+var validate = require('../lib/validations');
 
 router.get('/new', function(req, res, next) {
     res.render('new', {

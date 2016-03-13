@@ -19,22 +19,31 @@
                 <div class="inline ratingStars" data-rating-value='{{restaurant.rating_num}}'>
                 </div>
                 <br><br>
-                <a href="./{{restaurant.id}}/edit"><button class="btn btn-md btn-success">Edit</button></a>
-                <form method="post" action="/restaurants/{{restaurant.id}}/delete">
-                    <input type="submit" class="btn btn-md btn-danger" value="Delete"></input>
-                </form>
-                <a href="./{{restaurant.id}}/reviews/new"><button class="btn btn-md btn-info"> Review {{restaurant.name}}</button></a>
+                {% if admin %}
+                    <a href="./{{restaurant.id}}/edit"><button class="btn btn-md btn-success">Edit</button></a>
+                    <form method="post" action="/restaurants/{{restaurant.id}}/delete">
+                        <input type="submit" class="btn btn-md btn-danger" value="Delete"></input>
+                    </form>
+                {% endif %}
+                {% if user %}
+                    <a href="./{{restaurant.id}}/reviews/new"><button class="btn btn-md btn-info"> Review {{restaurant.name}}</button></a>
+                {% endif %}
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 employees">
-                <a href="#"><button class="btn btn-sm btn-primary">Add Employee</button></a>
+                {% if admin %}
+                    <a href="#"><button class="btn btn-sm btn-primary">Add Employee</button></a>
+                {% endif %}
                 <table class="table table-hover">
                     <thead>
                         <tr class="success">
+                            <th id="roundMe">{{restaurant.name}} Employees</th>
+                        </tr>
+                        <tr class="success">
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Position</th>
+                            <th id="halfRound">Position</th>
                         </tr>
                     </thead>
                     <tbody>
