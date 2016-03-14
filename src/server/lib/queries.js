@@ -3,6 +3,9 @@ var router = express.Router();
 var knex = require('../../../db/knex');
 var fixDate = require('./fixFunctions');
 
+function Users() {
+    return knex('users');
+}
 
 function Restaurants() {
     return knex('restaurants');
@@ -38,14 +41,21 @@ module.exports = {
     },
     show: function(id){
         return getRestarantById(id).then(function(restaurant) {
-            return getRatingsByRestarantId(id).then(function(ratings) {
-                for (var i in ratings) {
-                    ratings[i].short_review = ratings[i].review.substring(0, 35);
-                    ratings[i].review_date = fixDate(ratings[i].review_date);
-                }
-                restaurant.ratings = ratings;
-                return restaurant;
+            return getRatingsByRestarantId(id).innerJoin('users', 'ratings.user_id', 'users.id').then(function(ratings) {
+                    for (var i in ratings) {
+                        ratings[i].short_review = ratings[i].review.substring(0, 35);
+                        ratings[i].review_date = fixDate(ratings[i].review_date);
+                    }
+
+                    restaurant.ratings = ratings;
+                    return restaurant;
             });
         });
+    },
+    users: function() {
+        return Users();
+    },
+    findUser: function(id) {
+        return Users().where('id', id);
     }
 };
