@@ -47,19 +47,20 @@ app.use(passport.session());
 app.use('/',express.static(path.join(__dirname, '../client')));
 app.use('/images',express.static(path.join(__dirname, '../img')));
 
+
+//"https://fast-headland-90906.herokuapp.com/auth/facebook/callback" ||
 // auth
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_API_KEY,
     clientSecret: process.env.FACEBOOK_SECRET_KEY,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['name', 'displayName']
   },
   function(accessToken, refreshToken, profile, callback) {
-    console.log(this);
     queries.users().where('facebook_id', profile.id).then(function(data) {
         if (data.length) {
             return data[0].id;
         } else {
-
             return queries.users().insert({
               facebook_id: profile.id,
               first_name: profile.name.givenName,
@@ -75,17 +76,10 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.serializeUser(function(user, done) {
-  // later this will be where you selectively send to the browser
-  // an identifier for your user, like their primary key from the
-  // database, or their ID from linkedin
-
   done(null, user);
 });
 
 passport.deserializeUser(function(userId, done) {
-  // here is where you will go to the database and get the
-  // user each time from it's id, after you set up your db
-
   if ( userId ) {
     queries.users()
       .where({ id: userId })
@@ -95,7 +89,7 @@ passport.deserializeUser(function(userId, done) {
       })
       .catch(function (err) {
         done(err, null);
-      })
+      });
   } else {
     done();
   }

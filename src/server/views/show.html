@@ -69,7 +69,7 @@
                 {% for rating in ratings %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {{rating.user_name}}&#32;&#32;-&#32;&#32;{{rating.review_date}}
+                            {{rating.first_name}}&#32;{{rating.last_name}}&#32;&#32;-&#32;&#32;{{rating.review_date}}
                         </div>
                         <div class="panel-body">
                             <p class="reviewText longText" style="display: none;">"{{rating.review}}"</p>

@@ -3,6 +3,7 @@ var router = express.Router();
 var fixDate = require('../lib/fixFunctions');
 var validate = require('../lib/validations');
 var helpers = require('../lib/helpers');
+var queries = require('../lib/queries');
 
 
 router.get('/restaurants/:id/reviews/new', helpers.ensureAuthenticated, function(req, res, next) {
