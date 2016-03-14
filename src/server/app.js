@@ -48,7 +48,6 @@ app.use('/',express.static(path.join(__dirname, '../client')));
 app.use('/images',express.static(path.join(__dirname, '../img')));
 
 
-//"https://fast-headland-90906.herokuapp.com/auth/facebook/callback" ||
 // auth
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_API_KEY,

@@ -37,31 +37,44 @@ router.get('/restaurants/:id', function(req, res, next) {
     queries.show(url_id)
     .then(function (restaurant) {
         var restaurant_info = restaurant[0];
-        if (!req.user) {
-            res.render('show', {
-                title: restaurant_info.name,
-                header: restaurant_info.name,
-                ratings: restaurant.ratings,
-                restaurant: restaurant_info
-            });
-        } else if (req.user.admin) {
-            res.render('show', {
-                title: restaurant_info.name,
-                header: restaurant_info.name,
-                ratings: restaurant.ratings,
-                restaurant: restaurant_info,
-                user: req.user,
-                admin: req.user.admin
-            });
-        } else {
-            res.render('show', {
-                title: restaurant_info.name,
-                header: restaurant_info.name,
-                ratings: restaurant.ratings,
-                restaurant: restaurant_info,
-                user: req.user
-            });
+
+        var ratingValues = 0;
+        for(var i in restaurant.ratings) {
+            ratingValues +=restaurant.ratings[i].rating;
         }
+        var ratingAvg = ratingValues / restaurant.ratings.length;
+
+        var renderObj = {
+            title: restaurant_info.name,
+            header: restaurant_info.name,
+            ratings: restaurant.ratings,
+            restaurant: restaurant_info,
+            rating_num: ratingAvg
+        };
+
+        if (!req.user) {
+            res.render('show', renderObj);
+            return;
+        }
+
+        renderObj.user = req.user;
+
+        var isAdmin = req.user.admin;
+        if (isAdmin) {
+            renderObj.admin = true;
+        }
+
+        for(var i in restaurant.ratings) {
+            var rating = restaurant.ratings[i];
+            var isReviewer = rating.user_id == renderObj.user.id;
+            if(isAdmin || isReviewer) {
+                rating.canEdit = true;
+            }
+
+            restaurant.ratings[i] = rating;
+        }
+        console.log('show: ',renderObj);
+        res.render('show', renderObj);
     })
     .catch(function (err) {
         return next(err);

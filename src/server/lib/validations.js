@@ -16,16 +16,16 @@ function restaurantName(newName) {
     });
 }
 
-function userName(newName, restaurant_id) {
+function user(newID, restaurant_id) {
     var result;
     return queries.allRatings().where('restaurant_id', restaurant_id)
     .then(function(reviews) {
         var existingUsers = [];
         for (var i = 0; i < reviews.length; i++) {
-            existingUsers.push(reviews[i].user_name);
+            existingUsers.push(reviews[i].user_id);
         }
 
-        if (existingUsers.indexOf(newName.trim()) != -1) {
+        if (existingUsers.indexOf(newID) != -1) {
             result = 'You have already left a review for this restaurant!';
         }
         return result;
@@ -34,5 +34,5 @@ function userName(newName, restaurant_id) {
 
 module.exports = {
     restaurantName: restaurantName,
-    userName: userName
+    user: user
 };

@@ -46,9 +46,9 @@ router.get('/restaurants/:id/reviews/:review_id/edit', function(req, res, next) 
 //++++++++++++POSTS+++++++++++++\\
 
 router.post('/restaurants/:id/reviews', function(req, res, next) {
-    validate.userName(req.body.user_name, req.params.id).then(function (data) {
+    validate.user(req.user.id, req.params.id).then(function (data) {
         if (!data) {
-            queries.allRatings().insert({restaurant_id: req.params.id, user_name: req.body.user_name, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
+            queries.allRatings().insert({restaurant_id: req.params.id, user_id: req.user.id, rating: req.body.rating, review: req.body.review, review_date: req.body.review_date})
             .then(function(){
                 res.redirect('/restaurants/'+req.params.id);
             })
