@@ -52,7 +52,7 @@ app.use('/images',express.static(path.join(__dirname, '../img')));
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_API_KEY,
     clientSecret: process.env.FACEBOOK_SECRET_KEY,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: process.env.PRODUCTION_CALLBACK_URL || "http://localhost:3000/auth/facebook/callback",
     profileFields: ['name', 'displayName']
   },
   function(accessToken, refreshToken, profile, callback) {
