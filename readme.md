@@ -1,4 +1,4 @@
-## [heroku deployed](https://fast-headland-90906.herokuapp.com/)
+## [Heroku deployed](https://fast-headland-90906.herokuapp.com/)
 
 # Impressions :fork_and_knife: ( gTables )
 
@@ -17,7 +17,9 @@ This is a Yelp-like application created over 4 weekends during the back-end modu
 * PG
 * PG-Promise
 * Knex.js
-
+* Passport Facebook OAuth
+* Cookie Parser
+* Cookie Session
 * Workflow Tools
     * Git
     * Github
@@ -26,3 +28,4 @@ This is a Yelp-like application created over 4 weekends during the back-end modu
 
 
 Food images sourced from various blogs through Pinterest and edited by myself for unified look.
+Ipsum text from Cheese Ipsum.
